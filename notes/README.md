@@ -1,23 +1,34 @@
 # 📝 QuickNotes
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Django](https://img.shields.io/badge/Django-4.0-green?logo=django)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Status](https://img.shields.io/badge/Status-Active-success)
+A simple **Django-based Notes Web Application** where users can:
 
-QuickNotes ek **Django based Notes Web Application** hai jisme users apne personal notes securely store, manage aur update kar sakte hain.  
-Ye project mainly **learning purpose** ke liye banaya gaya hai (Django, HTML, CSS, Bootstrap practice).
+- Create, update, and delete notes
+- Register & login with authentication
+- Update profile (username, password)
+- Securely manage personal notes
 
 ---
 
 ## 🚀 Features
-✅ User authentication (Sign Up / Login / Logout)  
-✅ Add new notes  
-✅ View your saved notes  
-✅ Update & delete notes  
-✅ Update profile & password  
-✅ Responsive UI (HTML, CSS, Bootstrap)  
+- User authentication system (Sign up / Login / Logout)
+- CRUD operations for notes
+- Profile management (change name & password)
+- Responsive UI with HTML/CSS
+- SQLite database (default Django DB)
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Tech Stack
+- Python 3.10
+- Django 4.0
+- HTML, CSS, JavaScript
+- SQLite
+
+---
+
+## ⚡ Installation & Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YourUsername/notes-web-app.git
+   cd notes-web-app
