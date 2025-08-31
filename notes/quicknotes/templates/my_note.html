@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quicknotes | My Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "css/my_note.css" %}">
+      <!-- Font Awesome 6 (latest) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-lg-12">
+                <div class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <a href="" class="navbar-brand">
+                            <img src={% static "image/logo_main.png" %} alt="" class='img-fluid'>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+                            aria-controls="nav" aria-expanded="false">
+                            <span class="navbar-toggler-icon "></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="nav">
+                            <ul class="navbar-nav ms-auto gap-1">
+                                <li class="nav-item  ">
+                                    <a href="{% url "my_note" %}" class="nav-link ">
+                                        <span class='btn btn-primary'> <i class="fa-solid fa-eye"></i> my notes</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="{% url "add_note" %}" class="nav-link">
+                                        <span class='btn btn-primary'> <i class="fa-solid fa-plus"></i> Add notes</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item  mt-2">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                           <i class="fa-solid fa-person"></i> {{user.fname}}
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{% url "update_profile" %}">Update profile</a></li>
+                                            <li><a class="dropdown-item" href="{% url "update_pass" %}">Change Password</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </li>
+                                
+                                <li class="nav-item ">
+                                    <a href="{% url "logout" %}" class="nav-link">
+                                        <span class='btn btn-primary'>  <i class="fa-solid fa-outdent"></i> log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h1 class='text-center'>Your Notes</h1>
+                </div>
+            </div>
+            {% for i in  notes%}
+                <div class="col-sm-12 col-lg-4 d-flex justify-content-center">
+                    <div class="card mt-3 mb-3">
+                        <div class="card-header">
+                            <h4>{{i.title}}</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{i.content}}
+                            </p>
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-between">
+                            <div>
+                                <a href="{% url 'delete_note' i.id %}" class="btn delete">
+                                    Delete
+                                 </a>
+                            </div>
+                             <div>
+                                <button class="btn edit " data-bs-toggle="modal" data-bs-target="#editModal{{ i.id }}">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editModal{{ i.id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <form method="POST" action="{% url 'edit_note' i.id %}">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                            <h5 class="modal-title">Edit Note</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="mb-3">
+                                <label><strong>Title</strong></label>
+                                <input type="text" name="title" class="form-control mt-2" value="{{ i.title }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Content</strong></label>
+                                <textarea name="content" class="form-control mt-2" rows="4" required>{{ i.content }}</textarea>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

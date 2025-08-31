@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%  load static  %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quciknotes | signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "css/signup.css" %}">
+      <!-- Font Awesome 6 (latest) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-lg-12">
+                <div class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <a href="" class="navbar-brand">
+                            <img src={% static "image/logo_main.png" %} alt="" class='img-fluid'>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+                            aria-controls="nav" aria-expanded="false">
+                            <span class="navbar-toggler-icon "></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="nav">
+                            <ul class="navbar-nav ms-auto gap-3">
+                                <li class="nav-item">
+                                    <a href="{% url "login" %}" class="nav-link ">
+                                        <span class='btn btn-primary'>
+                                        <i class="fa-solid fa-arrow-right-to-bracket"></i> login
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url "sign_up" %}" class="nav-link active">
+                                        <span class='btn btn-primary'><i class="fa-solid fa-user-plus"></i> Sign up
+                                            </span>
+                                        </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class='text-center'>Sign Up</h1>
+                    </div>
+                    <form action="sign_up" class="form" method='POST'>
+                    {% csrf_token %}
+                        <div class="card-body">
+                            <div class="name d-flex">
+                                <div class="form-group mt-3 mx-1">
+                                    <label for=""><strong>First Name</strong></label>
+                                    <input type="text" name="fname" id="" class="form-control input mt-2">
+                                </div>
+
+                                <div class="form-group  mt-3 mx-1">
+                                    <label for=""><strong>last Name</strong></label>
+                                    <input type="text" name="lname" id="" class="form-control input mt-2">
+                                </div>
+                            </div>
+
+                                <div class="form-group  mt-3 mx-1">
+                                    <label for=""><strong>Email</strong></label>
+                                    <input type="email" name="email" id="email" class="form-control input mt-2">
+                                </div>
+
+                                <div class="form-group  mt-3 mx-1">
+                                    <label for=""><strong>Password</strong></label>
+                                    <input type="password" name="password" id="" class="form-control input mt-2">
+                                </div>
+
+                                <div class="form-group  mt-3 mx-1">
+                                    <label for=""><strong>confirm Password</strong></label>
+                                    <input type="password" name="cpassword" id="" class="form-control input mt-2">
+                                </div>
+                                
+                        
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="form-group d-flex flex-column">
+                                <input type="submit" value="signup" class='btn btn-primary form-control'>
+                                <div>
+                                {{msg}}
+                                </div>
+                            </div>
+                            <div class="login d-flex justify-content-center mt-3">
+                            <p>already have account?</p><a href="{% url "login" %}">Login</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

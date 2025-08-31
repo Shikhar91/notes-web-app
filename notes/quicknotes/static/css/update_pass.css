@@ -1,0 +1,30 @@
+body{
+    background-color: #F9FAFB;
+}
+
+.navbar-brand img{
+    height:60px;
+    width: 170px;
+}
+
+.card{
+    width: 35% !important;
+    background-color: transparent ;
+    border: none;
+
+}
+
+.card-header,.card-footer{
+    border: none;
+    background-color: transparent;
+}
+
+.input{
+    border: solid 1px black;
+}
+
+@media only screen and (max-width: 768px) {
+    .card{
+        width: 100% !important;
+    }
+}
